@@ -18,31 +18,35 @@ public class PizzaServiceImpl implements PizzaService {
 
   @Override
   public Pizza save(Pizza entity) {
-    return null;
+    return pizzaRepository.save(entity);
   }
 
   @Override
   public List<Pizza> save(List<Pizza> entities) {
-    return null;
+    return (List<Pizza>) pizzaRepository.saveAll(entities);
   }
 
   @Override
   public void deleteById(Long id) {
-
+    pizzaRepository.deleteById(id);
   }
 
   @Override
   public Optional<Pizza> findById(Long id) {
-    return Optional.empty();
+    return pizzaRepository.findById(id);
   }
 
   @Override
   public List<Pizza> findAll() {
-    return null;
+    return (List<Pizza>) pizzaRepository.findAll();
   }
 
   @Override
   public Pizza update(Pizza entity, Long id) {
+    Optional<Pizza> optional = pizzaRepository.findById(id);
+    if (optional.isPresent()){
+      return save(entity);
+    }
     return null;
   }
 }
