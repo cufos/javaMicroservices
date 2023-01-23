@@ -1,6 +1,5 @@
 package com.pizzarestaurant.store.dto;
 
-import com.pizzarestaurant.store.model.Topping;
 import lombok.*;
 
 import java.util.HashSet;
@@ -18,5 +17,5 @@ public class PizzaDTO {
 
   private boolean favorite;
 
-  private Set<Topping> toppings = new HashSet<>();
+  private Set<ToppingDTO> toppings = new HashSet<>();
 }
