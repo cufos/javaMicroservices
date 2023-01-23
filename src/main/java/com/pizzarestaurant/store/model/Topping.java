@@ -1,5 +1,6 @@
 package com.pizzarestaurant.store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Topping implements Serializable {
   @Column(name = "name")
   private String name;
 
+  @JsonIgnore
   @ManyToMany(mappedBy = "toppings")
   private Set<Pizza> pizzas = new HashSet<>();
 }
