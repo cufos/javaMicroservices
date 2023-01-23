@@ -2,6 +2,7 @@ package com.pizzarestaurant.store.service.impl;
 
 import com.pizzarestaurant.store.dao.PizzaRepository;
 import com.pizzarestaurant.store.model.Pizza;
+import com.pizzarestaurant.store.model.Restaurant;
 import com.pizzarestaurant.store.service.PizzaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,21 @@ public class PizzaServiceImpl implements PizzaService {
   @Override
   public Pizza update(Pizza entity, Long id) {
     Optional<Pizza> optional = pizzaRepository.findById(id);
+
     if (optional.isPresent()){
       return save(entity);
     }
     return null;
   }
 
+  @Override
+  public List<Pizza> findByRestaurantId(Long restaurantId) {
+    List<Pizza> pizzas = pizzaRepository.findByRestaurantsIn(
+      List.of(Restaurant.builder()
+        .id(restaurantId)
+        .build()
+      )
+    );
+    return pizzas;
+  }
 }

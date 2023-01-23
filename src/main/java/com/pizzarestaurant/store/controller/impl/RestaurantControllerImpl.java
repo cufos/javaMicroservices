@@ -18,6 +18,14 @@ public class RestaurantControllerImpl implements RestaurantController {
   private final RestaurantMapper restaurantMapper;
 
   @Override
+  @PostMapping("/addpizzas")
+  public RestaurantDTO addPizzasToRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
+    Restaurant restaurant = restaurantMapper.asEntity(restaurantDTO);
+
+    return restaurantMapper.asDTO(restaurantService.addPizzasToRestaurant(restaurant));
+  }
+
+  @Override
   @PostMapping
   public RestaurantDTO save(@RequestBody RestaurantDTO restaurantDTO) {
     Restaurant restaurant = restaurantMapper.asEntity(restaurantDTO);
@@ -49,5 +57,11 @@ public class RestaurantControllerImpl implements RestaurantController {
   public RestaurantDTO update(@RequestBody RestaurantDTO restaurantDTO,@PathVariable("id") Long id) {
     Restaurant restaurant = restaurantMapper.asEntity(restaurantDTO);
     return restaurantMapper.asDTO(restaurantService.update(restaurant,id));
+  }
+
+  @Override
+  @PutMapping("/pizzas/{restaurantId}/{pizzaId}")
+  public RestaurantDTO addPizzaById(@PathVariable Long restaurantId,@PathVariable Long pizzaId) {
+    return restaurantMapper.asDTO(restaurantService.addPizzaById(restaurantId,pizzaId));
   }
 }

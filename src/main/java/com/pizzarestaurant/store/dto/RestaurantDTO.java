@@ -21,4 +21,6 @@ public class RestaurantDTO {
   private String city;
 
   private Set<DriverDTO> drivers = new HashSet<>();
+
+  private Set<PizzaDTO> pizzas = new HashSet<>();
 }
