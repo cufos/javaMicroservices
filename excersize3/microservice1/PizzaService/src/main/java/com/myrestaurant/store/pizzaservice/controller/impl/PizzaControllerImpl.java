@@ -27,12 +27,9 @@ public class PizzaControllerImpl implements PizzaController {
 
   @Override
   @PostMapping("/restaurant")
-  public List<PizzaDTO> addPizzasToRestaurant(
-    @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
-  ) {
-    List<RestaurantIds> restaurantIds = restaurantIdsMapper.asEntityList(restaurantIdsDTOS);
-
-    return pizzaMapper.asDTOList(pizzaService.addPizzasToRestaurant(restaurantIds));
+  public List<PizzaDTO> addPizzasToRestaurant(List<RestaurantIdsDTO> restaurantIdsDTOS) {
+    List<RestaurantIds> _restaurantIds = restaurantIdsMapper.asEntityList(restaurantIdsDTOS);
+    return pizzaMapper.asDTOList(pizzaService.addPizzasToRestaurant(_restaurantIds));
   }
 
   @Override

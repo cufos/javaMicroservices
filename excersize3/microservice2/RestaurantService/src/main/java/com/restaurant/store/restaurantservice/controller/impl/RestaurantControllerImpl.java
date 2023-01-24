@@ -33,9 +33,10 @@ public class RestaurantControllerImpl implements RestaurantController {
    @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
   ) {
     RestTemplate restTemplate = new RestTemplate();
-    return List.of(
-      restTemplate.postForObject(pizzaServiceUrl,restaurantIdsDTOS,Object[].class)
-    );
+    return List.of(Objects.requireNonNull(
+      restTemplate.postForObject(pizzaServiceUrl, restaurantIdsDTOS, Object[].class)
+    ));
+
   }
 
   @Override
