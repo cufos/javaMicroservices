@@ -3,9 +3,11 @@ package com.restaurant.store.restaurantservice.controller.impl;
 
 import com.restaurant.store.restaurantservice.controller.RestaurantController;
 import com.restaurant.store.restaurantservice.dto.RestaurantDTO;
+import com.restaurant.store.restaurantservice.dto.RestaurantIdsDTO;
 import com.restaurant.store.restaurantservice.mapper.RestaurantMapper;
 import com.restaurant.store.restaurantservice.model.Restaurant;
 import com.restaurant.store.restaurantservice.service.RestaurantService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,17 @@ public class RestaurantControllerImpl implements RestaurantController {
 
   @Value("${app.pizza-service-url}")
   private String pizzaServiceUrl;
+
+  @Override
+  @PostMapping("/addPizzas")
+  public List<Object> addPizzasToRestaurant(
+   @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
+  ) {
+    RestTemplate restTemplate = new RestTemplate();
+    return List.of(
+      restTemplate.postForObject(pizzaServiceUrl,restaurantIdsDTOS,Object[].class)
+    );
+  }
 
   @Override
   @GetMapping("/pizzas/{restaurantId}")

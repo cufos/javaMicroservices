@@ -2,8 +2,11 @@ package com.myrestaurant.store.pizzaservice.controller.impl;
 
 import com.myrestaurant.store.pizzaservice.controller.PizzaController;
 import com.myrestaurant.store.pizzaservice.dto.PizzaDTO;
+import com.myrestaurant.store.pizzaservice.dto.RestaurantIdsDTO;
 import com.myrestaurant.store.pizzaservice.mapper.PizzaMapper;
+import com.myrestaurant.store.pizzaservice.mapper.RestaurantIdsMapper;
 import com.myrestaurant.store.pizzaservice.model.Pizza;
+import com.myrestaurant.store.pizzaservice.model.RestaurantIds;
 import com.myrestaurant.store.pizzaservice.service.PizzaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,18 @@ public class PizzaControllerImpl implements PizzaController {
   private final PizzaService pizzaService;
 
   private final PizzaMapper pizzaMapper;
+
+  private final RestaurantIdsMapper restaurantIdsMapper;
+
+  @Override
+  @PostMapping("/restaurant")
+  public List<PizzaDTO> addPizzasToRestaurant(
+    @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
+  ) {
+    List<RestaurantIds> restaurantIds = restaurantIdsMapper.asEntityList(restaurantIdsDTOS);
+
+    return pizzaMapper.asDTOList(pizzaService.addPizzasToRestaurant(restaurantIds));
+  }
 
   @Override
   @PostMapping

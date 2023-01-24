@@ -1,6 +1,7 @@
 package com.restaurant.store.restaurantservice.controller;
 
 import com.restaurant.store.restaurantservice.dto.RestaurantDTO;
+import com.restaurant.store.restaurantservice.dto.RestaurantIdsDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,11 @@ import java.util.List;
 
 @Api(tags = "Restaurant API")
 public interface RestaurantController {
+
+  @ApiOperation("Add pizzas to restaurant")
+  public List<Object> addPizzasToRestaurant(
+    @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
+  );
 
   @ApiOperation("Find all pizzas by restaurant ID")
   public List<Object> getPizzasByRestaurantId(
