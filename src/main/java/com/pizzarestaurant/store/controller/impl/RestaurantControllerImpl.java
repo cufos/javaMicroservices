@@ -58,10 +58,4 @@ public class RestaurantControllerImpl implements RestaurantController {
     Restaurant restaurant = restaurantMapper.asEntity(restaurantDTO);
     return restaurantMapper.asDTO(restaurantService.update(restaurant,id));
   }
-
-  @Override
-  @PutMapping("/pizzas/{restaurantId}/{pizzaId}")
-  public RestaurantDTO addPizzaById(@PathVariable Long restaurantId,@PathVariable Long pizzaId) {
-    return restaurantMapper.asDTO(restaurantService.addPizzaById(restaurantId,pizzaId));
-  }
 }
