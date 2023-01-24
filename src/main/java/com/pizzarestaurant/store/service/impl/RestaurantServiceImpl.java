@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -60,14 +59,4 @@ public class RestaurantServiceImpl implements RestaurantService {
     return restaurantRepository.save(restaurant);
   }
 
-  @Override
-  public Restaurant addPizzaById(Long restaurantId, Long pizzaId) {
-    Restaurant restaurant = findById(restaurantId).orElse(null);
-    Pizza _pizza = pizzaRepository.getReferenceById(pizzaId);
-    Set<Pizza> pizza = new HashSet<>();
-    pizza.add(_pizza);
-
-    restaurant.setPizzas(pizza);
-   return restaurantRepository.save(restaurant);
-  }
 }
