@@ -11,6 +11,11 @@ import java.util.List;
 @Api(tags = "Restaurant API")
 public interface RestaurantController {
 
+  @ApiOperation("Find all pizzas by restaurant ID")
+  public List<Object> getPizzasByRestaurantId(
+    @PathVariable("id") Long restaurantId
+  );
+
   @ApiOperation("Add new restaurant")
   public RestaurantDTO save(@RequestBody RestaurantDTO restaurantDTO);
 

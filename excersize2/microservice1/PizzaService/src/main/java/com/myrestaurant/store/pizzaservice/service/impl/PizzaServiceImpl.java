@@ -1,12 +1,15 @@
 package com.myrestaurant.store.pizzaservice.service.impl;
 
 import com.myrestaurant.store.pizzaservice.dao.PizzaRepository;
+import com.myrestaurant.store.pizzaservice.dao.RestaurantIdsRepository;
 import com.myrestaurant.store.pizzaservice.model.Pizza;
+import com.myrestaurant.store.pizzaservice.model.RestaurantIds;
 import com.myrestaurant.store.pizzaservice.service.PizzaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PizzaServiceImpl implements PizzaService {
   private final PizzaRepository pizzaRepository;
+  private final RestaurantIdsRepository restaurantIdsRepository;
 
   @Override
   public Pizza save(Pizza entity) {
@@ -51,4 +55,28 @@ public class PizzaServiceImpl implements PizzaService {
     return null;
   }
 
+  @Override
+  public List<Pizza> findByRestaurantId(Long restaurantId) {
+    List<RestaurantIds> restaurantIds = restaurantIdsRepository.findByRestaurantId(restaurantId);
+    List<Pizza> pizzas = new ArrayList<>(restaurantIds.size());
+
+    for (RestaurantIds el:restaurantIds) {
+      pizzas.add(pizzaRepository.findById(el.getPizzaId()).get());
+    }
+
+    return pizzas;
+  }
+
+//  @Override
+//  public List<Pizza> addPizzasToRestaurant(List<RestaurantIds> restaurantIds){
+//    List<RestaurantIds> ids = (List<RestaurantIds>) restaurantIdsRepository.saveAll(restaurantIds);
+//
+//    List<Pizza> pizzas = new ArrayList<>(ids.size());
+//
+//    for (RestaurantIds el:ids){
+//      pizzas.add(pizzaRepository.findById(el.getPizzaId()).get());
+//    }
+//
+//    return pizzas;
+//  }
 }
