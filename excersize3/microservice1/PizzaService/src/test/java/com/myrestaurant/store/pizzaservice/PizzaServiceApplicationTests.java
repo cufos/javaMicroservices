@@ -1,5 +1,6 @@
 package com.myrestaurant.store.pizzaservice;
 
+
 import com.myrestaurant.store.pizzaservice.dao.PizzaRepository;
 import com.myrestaurant.store.pizzaservice.model.Pizza;
 import com.myrestaurant.store.pizzaservice.model.Topping;
@@ -14,6 +15,7 @@ import java.util.Set;
 class PizzaServiceApplicationTests {
 	@Autowired
 	PizzaRepository pizzaRepository;
+
 	@Test
 	void populatePizzaDB() {
 		Topping mozzarella = Topping.builder().name("Mozzarella locale").build();
