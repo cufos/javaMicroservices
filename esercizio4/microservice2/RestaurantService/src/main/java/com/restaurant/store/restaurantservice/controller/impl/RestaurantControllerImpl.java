@@ -7,7 +7,6 @@ import com.restaurant.store.restaurantservice.dto.RestaurantIdsDTO;
 import com.restaurant.store.restaurantservice.mapper.RestaurantMapper;
 import com.restaurant.store.restaurantservice.model.Restaurant;
 import com.restaurant.store.restaurantservice.service.RestaurantService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,24 +29,26 @@ public class RestaurantControllerImpl implements RestaurantController {
   @Value("${app.pizza-service-url}")
   private String pizzaServiceUrl;
 
-  @Value("${app.rabbitmq.routingKey}")
-  private String routingKey;
+  @Value("${app.rabbitmq.add-pizzas-routingKey}")
+  private String addPizzasToRestaurantRoutingKey;
 
   @Override
   @PostMapping("/addPizzas")
   public List<Object> addPizzasToRestaurant(
    @RequestBody List<RestaurantIdsDTO> restaurantIdsDTOS
   ) {
-    RestTemplate restTemplate = new RestTemplate();
-    List<Object> result = List.of(Objects.requireNonNull(
-      restTemplate.postForObject(pizzaServiceUrl, restaurantIdsDTOS, Object[].class)
-    ));
+//    RestTemplate = new RestTemplate();
+//    List<Object> result = List.of(Objects.requireNonNull(
+//      restTemplate.postForObject(pizzaServiceUrl, restaurantIdsDTOS, Object[].class)
+//    ));
+//
+//    // sending a notification with rabbit
+//    rabbitTemplate.convertAndSend(
+//      "", addPizzasToRestaurantRoutingKey,"Added no. " + result.size() + " pizzas!"
+//    );
 
-    // sending a notification with rabbit
-    rabbitTemplate.convertAndSend(
-      "",routingKey,"Added no. " + result.size() + " pizzas!"
-    );
-    return result;
+    restaurantService.addPizzasToRestaurant(restaurantIdsDTOS);
+    return null;
   }
 
   @Override

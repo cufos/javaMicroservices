@@ -1,4 +1,4 @@
-package com.restaurant.store.restaurantservice.configuration;
+package com.myrestaurant.store.pizzaservice.configuration;
 
 
 import org.springframework.amqp.core.AcknowledgeMode;
@@ -16,39 +16,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 
+
 @Configuration
 public class RabbitMQConfig {
 
   private final CachingConnectionFactory cachingConnectionFactory;
 
-  @Value("${app.rabbitmq.add-pizzas-routingKey}")
-  private String addPizzasToRestaurantRoutingKey;
-
   @Value("${app.rabbitmq.pizzas-added-routingKey}")
   private String pizzasToRestaurantAddedRoutingKey;
-
-  @Value("${app.rabbitmq.notify-pizzas-added-routingKey}")
-  private String notifyPizzasToRestaurantAddedRoutingKey;
 
   public RabbitMQConfig(CachingConnectionFactory cachingConnectionFactory) {
     this.cachingConnectionFactory = cachingConnectionFactory;
   }
 
   @Bean
-  public Queue addPizzasToRestaurantQueue() {
-    return QueueBuilder.durable(addPizzasToRestaurantRoutingKey)
-      .build();
-  }
-
-  @Bean
   public Queue pizzasToRestaurantAddedQueue() {
     return QueueBuilder.durable(pizzasToRestaurantAddedRoutingKey)
-      .build();
-  }
-
-  @Bean
-  public Queue notifyPizzasToRestaurantAddedQueue() {
-    return QueueBuilder.durable(notifyPizzasToRestaurantAddedRoutingKey)
       .build();
   }
 

@@ -28,4 +28,6 @@ server:
 app:
   pizza-service-url: http://localhost:9090/api/pizzas/restaurant
   rabbitmq:
-    routingKey: q.add-pizzas-to-restaurant
+    add-pizzas-routingKey: q.add-pizzas-to-restaurant
+    pizzas-added-routingKey: q.pizzas-added-to-restaurant
+    notify-pizzas-added-routingKey: q.notify-pizzas-added-to-restaurant

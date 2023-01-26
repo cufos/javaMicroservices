@@ -1,9 +1,12 @@
 package com.restaurant.store.restaurantservice.service.impl;
 
 import com.restaurant.store.restaurantservice.dao.RestaurantRepository;
+import com.restaurant.store.restaurantservice.dto.RestaurantIdsDTO;
 import com.restaurant.store.restaurantservice.model.Restaurant;
 import com.restaurant.store.restaurantservice.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +17,13 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
+
+  private final RabbitTemplate rabbitTemplate;
   private final RestaurantRepository restaurantRepository;
+
+  @Value("${app.rabbitmq.add-pizzas-routingKey}")
+  private String addPizzasToRestaurantRoutingKey;
+
 
   @Override
   public Restaurant save(Restaurant entity) {
@@ -50,4 +59,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     return null;
   }
 
+  @Override
+  public void addPizzasToRestaurant(List<RestaurantIdsDTO> restaurantIdsDTOS) {
+    rabbitTemplate.convertAndSend("", addPizzasToRestaurantRoutingKey , restaurantIdsDTOS);
+  }
 }

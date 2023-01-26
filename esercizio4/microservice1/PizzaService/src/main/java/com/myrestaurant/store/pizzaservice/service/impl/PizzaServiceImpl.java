@@ -6,6 +6,8 @@ import com.myrestaurant.store.pizzaservice.model.Pizza;
 import com.myrestaurant.store.pizzaservice.model.RestaurantIds;
 import com.myrestaurant.store.pizzaservice.service.PizzaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,13 @@ import java.util.Optional;
 public class PizzaServiceImpl implements PizzaService {
   private final PizzaRepository pizzaRepository;
   private final RestaurantIdsRepository restaurantIdsRepository;
+  private final RabbitTemplate rabbitTemplate;
+
+  @Value("${app.rabbitmq.pizzas-added-routingKey}")
+  private String pizzasToRestaurantAddRoutingKey;
+
+  @Value("${app.rabbitmq.notify-pizzas-added-routingKey}")
+  private String notifyPizzasToRestaurantAddRoutingKey;
 
   @Override
   public Pizza save(Pizza entity) {
@@ -74,6 +83,9 @@ public class PizzaServiceImpl implements PizzaService {
       pizzas.add(pizzaRepository.findById(el.getPizzaId()).get());
     }
     restaurantIdsRepository.saveAll(restaurantIdsList);
+    String message = " Added n. " + pizzas.size() + " pizzas!";
+    rabbitTemplate.convertAndSend("",pizzasToRestaurantAddRoutingKey,pizzas);
+    rabbitTemplate.convertAndSend("",notifyPizzasToRestaurantAddRoutingKey,message );
     return pizzas;
   }
 }

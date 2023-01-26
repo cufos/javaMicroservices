@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2ab6707-e268-46c4-8900-9a6fad49fe45" name="Changes" comment="setting up the project">
-      <change afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/configuration/RabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e2ab6707-e268-46c4-8900-9a6fad49fe45" name="Changes" comment="Created the rabbitMq configuration file">
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/listener/NotificationListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/serivce/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/serivce/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/serivce/SMSService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/serivce/impl/EmailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NotificationServer/src/main/java/com/myrestaurant/store/notifiactionserivce/serivce/impl/SMSServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservice1/PizzaService/src/main/java/com/myrestaurant/store/pizzaservice/configuration/RabbitMQConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservice1/PizzaService/src/main/java/com/myrestaurant/store/pizzaservice/listener/AddPizzasToRestaurantListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/listener/PizzasToRestaurantAddedListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NotificationServer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/NotificationServer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice1/PizzaService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservice1/PizzaService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice1/PizzaService/src/main/java/com/myrestaurant/store/pizzaservice/service/impl/PizzaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice1/PizzaService/src/main/java/com/myrestaurant/store/pizzaservice/service/impl/PizzaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice1/PizzaService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservice1/PizzaService/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/configuration/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/configuration/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/controller/impl/RestaurantControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/controller/impl/RestaurantControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/service/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/service/RestaurantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/service/impl/RestaurantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/java/com/restaurant/store/restaurantservice/service/impl/RestaurantServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservice2/RestaurantService/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -67,7 +83,12 @@
     "spring.configuration.checksum": "78c8bf62ce05eab0e42babab514b8235"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.RestaurantServiceApplication">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.myrestaurant.store.pizzaservice.configuration" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.NotificationServerApplication">
     <configuration name="NotificationServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="NotificationServer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.myrestaurant.store.notifiactionserivce.NotificationServerApplication" />
@@ -99,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674663773480</updated>
       <workItem from="1674663774714" duration="2899000" />
-      <workItem from="1674721048592" duration="1861000" />
+      <workItem from="1674721048592" duration="15171000" />
     </task>
     <task id="LOCAL-00001" summary="creating a new one microservice for notifications">
       <created>1674665679021</created>
@@ -115,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674665749540</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created the rabbitMq configuration file">
+      <created>1674723195468</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674723195468</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +164,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="creating a new one microservice for notifications" />
     <MESSAGE value="setting up the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="setting up the project" />
+    <MESSAGE value="Created the rabbitMq configuration file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the rabbitMq configuration file" />
   </component>
 </project>
