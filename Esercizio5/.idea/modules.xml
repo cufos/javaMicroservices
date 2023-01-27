@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" filepath="$PROJECT_DIR$/DiscoveryService/DiscoveryService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Esercizio5.iml" filepath="$PROJECT_DIR$/.idea/Esercizio5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GatewayService/GatewayService.iml" filepath="$PROJECT_DIR$/GatewayService/GatewayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/NotificationService/NotificationService.iml" filepath="$PROJECT_DIR$/NotificationService/NotificationService.iml" />
       <module fileurl="file://$PROJECT_DIR$/PizzaService/PizzaService.iml" filepath="$PROJECT_DIR$/PizzaService/PizzaService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RestaurantService/RestaurantService.iml" filepath="$PROJECT_DIR$/RestaurantService/RestaurantService.iml" />
