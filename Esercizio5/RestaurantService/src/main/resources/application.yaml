@@ -3,4 +3,5 @@ spring:
     name: RESTAURANT-SERVICE
   config:
     import: optional:configserver:http://localhost:8888/config
-
+  profiles:
+    active: default
